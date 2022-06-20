@@ -43,6 +43,19 @@ const server = http.createServer(function(request, response) {
             }
         })
     }
+    
+     if (request.url === '/Homepage.html') {
+        let filePath = path.join(__dirname, 'public', 'Homepage.html')
+        response.writeHead(200, { 'Content-Type': 'text/html' })
+        fs.readFile(filePath, 'utf8', (err, data) => {
+            if (err) {
+                response.write(error)
+                response.end('something went wrong')
+            } else {
+                response.end(data);
+            }
+        })
+    }
 });
 
 
